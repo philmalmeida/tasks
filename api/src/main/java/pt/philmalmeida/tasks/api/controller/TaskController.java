@@ -2,10 +2,7 @@ package pt.philmalmeida.tasks.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pt.philmalmeida.tasks.api.entity.Task;
 import pt.philmalmeida.tasks.api.service.TaskService;
 
@@ -22,5 +19,11 @@ public class TaskController {
         return ResponseEntity.ok(
             this.taskService.saveTask(task)
         );
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Integer id){
+        this.taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 }
